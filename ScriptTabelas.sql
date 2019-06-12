@@ -56,8 +56,8 @@ CREATE TABLE MovimentacaoEstoque (
     Id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Data_Evento DATE,
     Tipo VARCHAR(255),
-    Quantidade INTEGER,
-    fk_Produto_Id INTEGER
+    Quantidade VARCHAR(255),
+    fk_Produto_Id VARCHAR(255)
 );
 
 CREATE TABLE Representa (
