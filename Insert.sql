@@ -28,7 +28,7 @@ VALUES
 ("Cafe", 1000),
 ("Tamarindo", 1000);
 
-INSERT INTO CevadaBeer.MovimentacaoEstoque(Data_Evento, Tipo, Quantidade)
+INSERT INTO CevadaBeer.MovimentacaoEstoque(Data_Registro, Tipo, Quantidade)
 VALUES
 ('2019-10-06', "Entrada", 100),
 ('2019-11-06', "Entrada", 100),
