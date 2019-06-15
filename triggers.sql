@@ -12,11 +12,12 @@ BEGIN
 		UPDATE Produto
 		SET Quantidade = (select Quantidade from Produto where Id = new.fk_Produto_Id) + new.Quantidade
 		where Id = new.fk_Produto_Id;
-	ELSE
+	ELSE IF NEW.Tipo = 'Saída' then
 		UPDATE Produto
 		SET Quantidade = ((select Quantidade from Produto where Id = new.fk_Produto_Id) - new.Quantidade)
 		where Id = new.fk_Produto_Id;
-	END if
+	END IF
+	END IF
 end
 
 -- before update finalizar producao atualizar MovimentacaoEstoque
