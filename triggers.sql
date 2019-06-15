@@ -1,16 +1,23 @@
-user CevadaBeer
+use CevadaBeer;
 
--- before update movimentacao atualizar estoque
-CREATE TRIGGER before_movimentacao_insert
-    BEFORE UPDATE ON employees
-    FOR EACH ROW 
+-- before insert movimentacao atualizar estoque
+CREATE OR REPLACE TRIGGER before_movimentacao_insert
+    BEFORE INSERT ON MovimentacaoEstoque
+    FOR EACH ROW
+DECLARE qtd_atual;
 BEGIN
-    INSERT INTO employees_audit
-    SET action = 'update',
-     employeeNumber = OLD.employeeNumber,
-        lastname = OLD.lastname,
-        changedat = NOW(); 
-END
+	select Quantidade into qtd_atual from Produto where Id = new.fk_Produto_Id;
+    
+	if new.Tipo = 'Entrada' then
+		UPDATE Produto
+		SET Quantidade = (select Quantidade from Produto where Id = new.fk_Produto_Id) + new.Quantidade
+		where Id = new.fk_Produto_Id;
+	ELSE
+		UPDATE Produto
+		SET Quantidade = ((select Quantidade from Produto where Id = new.fk_Produto_Id) - new.Quantidade)
+		where Id = new.fk_Produto_Id;
+	END if
+end
 
 -- before update finalizar producao atualizar MovimentacaoEstoque
 
@@ -40,3 +47,8 @@ END
 -- procedure checar quais producoes finalizam amanha
 
 -- procedure checar se ha cerveja mais pedida no estoque
+
+-- relatorios
+-- retornar producoes que vao terminar na proxima semana
+-- retornar produtos baixo no estoque
+-- retornar igredientes baixos no estoque
