@@ -1,24 +1,27 @@
 /* Logico_Integrador: */
+
+create database CevadaBeer;
+
 use CevadaBeer;
+
 CREATE TABLE Cerveja (
-    Id INTEGER PRIMARY KEY,
+    Id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
     Cor VARCHAR(255),
     TeorAlcoolico DECIMAL,
     Estilo VARCHAR(255),
     Nome VARCHAR(255),
     IBU DECIMAL,
-    IdReceita INTEGER,
-    TempoMaturacao DECIMAL
+    TempoMaturacao INTEGER
 );
 
-CREATE TABLE Igredientes (
-    Id INTEGER PRIMARY KEY,
+CREATE TABLE Ingredientes (
+    Id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
     Nome VARCHAR(255),
     QuantidadeEstoque DECIMAL
 );
 
 CREATE TABLE Produto (
-    Id INTEGER PRIMARY KEY,
+    Id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
     Volume DECIMAL,
     Valor DECIMAL,
     Quantidade INTEGER,
@@ -27,7 +30,7 @@ CREATE TABLE Produto (
 );
 
 CREATE TABLE Producao (
-    Id INTEGER PRIMARY KEY,
+    Id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
     Quantidade DECIMAL,
     Dt_Inicio DATE,
     Dt_Fim DATE,
@@ -35,13 +38,17 @@ CREATE TABLE Producao (
 );
 
 CREATE TABLE Cervejaria (
-    Id INTEGER PRIMARY KEY,
+    Id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
     Nome VARCHAR(255),
-    Endereco VARCHAR(255)
+    TipoLogradouro VARCHAR(255),
+    NomeLogradouro VARCHAR(255),
+    NumLogradouro INTEGER,
+    Cidade VARCHAR(255),
+    Estado VARCHAR(255)
 );
 
 CREATE TABLE Usuario (
-    Id INTEGER PRIMARY KEY,
+    Id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
     Nome VARCHAR(255),
     CPF VARCHAR(11),
     Senha VARCHAR(24),
@@ -49,8 +56,8 @@ CREATE TABLE Usuario (
 );
 
 CREATE TABLE MovimentacaoEstoque (
-    Id INTEGER PRIMARY KEY,
-    Data DATE,
+    Id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    Data_Registro DATE,
     Tipo VARCHAR(255),
     Quantidade INTEGER,
     fk_Produto_Id INTEGER
@@ -59,14 +66,14 @@ CREATE TABLE MovimentacaoEstoque (
 CREATE TABLE Representa (
     fk_Cervejaria_Id INTEGER,
     fk_Usuario_Id INTEGER,
-    Id INTEGER PRIMARY KEY
+    Id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE Contem (
-    fk_Igredientes_Id INTEGER,
+    fk_Ingredientes_Id INTEGER,
     fk_Cerveja_Id INTEGER,
     QtdPorLitro DECIMAL,
-    Id INTEGER PRIMARY KEY
+    Id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY
 );
  
 ALTER TABLE Produto ADD CONSTRAINT FK_Produto_2
@@ -100,8 +107,8 @@ ALTER TABLE Representa ADD CONSTRAINT FK_Representa_3
     ON DELETE SET NULL;
  
 ALTER TABLE Contem ADD CONSTRAINT FK_Contem_2
-    FOREIGN KEY (fk_Igredientes_Id)
-    REFERENCES Igredientes (Id)
+    FOREIGN KEY (fk_Ingredientes_Id)
+    REFERENCES Ingredientes (Id)
     ON DELETE RESTRICT;
  
 ALTER TABLE Contem ADD CONSTRAINT FK_Contem_3

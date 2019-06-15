@@ -1,4 +1,4 @@
-USE CevadaBeer;
+use CevadaBeer;
 
 INSERT INTO CevadaBeer.Cerveja(Cor, TeorAlcoolico, Estilo, Nome, IBU, TempoMaturacao)
 VALUES 
@@ -37,8 +37,14 @@ VALUES
 (2, 3, 100),
 (4, 4, 100);
 
+INSERT INTO CevadaBeer.Produto(fk_Cerveja_Id, Volume, Valor, Quantidade, fk_Cervejaria_Id)
+VALUES
+(1, 600, 17.5, 50, 1),
+(2, 1000, 14.9, 24, 1),
+(3, 300,10.0, 100, 4),
+(4, 15000,150, 10, 3 );
 
-INSERT INTO CevadaBeer.MovimentacaoEstoque(Data_Evento, Tipo, Quantidade, fk_Produto_Id)
+INSERT INTO CevadaBeer.MovimentacaoEstoque(Data_Registro, Tipo, Quantidade, fk_Produto_Id)
 VALUES
 ('2019-10-06', "Entrada", 100, 1),
 ('2019-11-06', "Entrada", 100, 1),
@@ -55,13 +61,6 @@ VALUES
 (4, 30, '2019-06-20', '2019-10-20');
 
 
-INSERT INTO CevadaBeer.Produto(fk_Cerveja_Id, Volume, Valor, Quantidade, fk_Cervejaria_Id)
-VALUES
-(1, 600, 17.5, 50, 1),
-(2, 1000, 14.9, 24, 1),
-(3, 300,10.0, 100, 4),
-(4, 15000,150, 10, 3 );
-
 
 INSERT INTO CevadaBeer.Usuario(Nome, CPF, Senha, Email)
 VALUES
@@ -72,11 +71,10 @@ VALUES
 INSERT INTO CevadaBeer.Representa(fk_Cervejaria_Id, fk_Usuario_Id)
 VALUES
 (1, 1),
-(1, 2),
-(2, 3),
-(2, 4),
-(3, 5),
-(4, 6);
+(2, 2),
+(3, 3),
+(4, 1),
+(1, 2);
 
 
 
