@@ -17,7 +17,7 @@ FROM Ingredientes
 RETURN	valorReaisEstoque;	
 
 END |
-GO
+
 
 DELIMITER ;
 /***********************************************************/
