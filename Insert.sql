@@ -15,18 +15,18 @@ VALUES
 ("Captain Brew", "Av.", "dos desconhecidos", 2389, "Uberlândia", "Minas Gerais");
 
 
-INSERT INTO CevadaBeer.Ingredientes(Nome, QuantidadeEstoque) 
+INSERT INTO CevadaBeer.Ingredientes(Nome, QuantidadeEstoque, ValorUnitario) 
 VALUES 
-("Malte", 25000),
-("Lupulus", 25000),
-("Agua", 35000),
-("Cevada",8200),
-("Trigo", 2000),
-("Leveduras", 1000),
-("Banana", 50000),
-("Cajarana", 55000),
-("Cafe", 1000),
-("Tamarindo", 1000);
+("Malte", 25000, 1.5),
+("Lupulus", 25000, 2.4),
+("Agua", 35000, 0.5),
+("Cevada",8200, 1.0),
+("Trigo", 2000, 3.0),
+("Leveduras", 1000, 1.2),
+("Banana", 50000, 0.3),
+("Cajarana", 55000, 0.3),
+("Cafe", 1000, 1.0),
+("Tamarindo", 1000, 1.0);
 
 INSERT INTO CevadaBeer.Contem(fk_Ingredientes_Id, fk_Cerveja_Id, QtdPorLitro)
 VALUES

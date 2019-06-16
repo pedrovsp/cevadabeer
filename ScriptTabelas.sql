@@ -18,7 +18,7 @@ CREATE TABLE Ingredientes (
     Id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
     Nome VARCHAR(255),
     QuantidadeEstoque DECIMAL,
-    ValorUnitario DECIMAL
+    ValorUnitario NUMERIC(10.2)
 );
 
 CREATE TABLE Produto (
