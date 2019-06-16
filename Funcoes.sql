@@ -1,3 +1,4 @@
+use CevadaBeer;
 /*Função 1 - Calcular o valor total, em reais, de todos os produtos em estoque*/
 
 DELIMITER |		
@@ -26,19 +27,16 @@ DELIMITER ;
 
 DELIMITER |
 
-CREATE FUNCTION	verificarAgua()		
-RETURN VARCHAR
+CREATE FUNCTION	verificarAgua(id_agua int)		
+RETURNS int
 BEGIN
-DECLARE idSemAgua int;
-IF ((SELECT nome FROM Ingredientes) != "Agua" AND 
-	(SELECT nome FROM Ingredientes) != "Água") {
-	SET idSemAgua = (SELECT id FROM Ingredientes);
-}
-IF((SELECT fk_Ingredientes_Id FROM Contem) = idSemAgua) {
-RETURN PRINT ('O produto de id ', idSemAgua, ' está sem água');
-}
-
-END |
+DECLARE agua int;
+SELECT QuantidadeEstoque into agua from Ingredientes where Id = id_agua;
+IF(agua < 3000) THEN
+	SIGNAL SQLSTATE '45000'	SET	MESSAGE_TEXT = 'Pouca agua';
+else return agua;
+end if;
+END; |
 
 DELIMITER ;
 
@@ -47,35 +45,26 @@ DELIMITER ;
 
 /*Função 3 - Mostra duplicidade de CPF*/
 DELIMITER |
-CREATE FUNCTION mostrarDuplicidadeCPF()
+CREATE FUNCTION mostrarDuplicidadeCPF(cpf varchar(11))
+RETURNS boolean
 BEGIN
-SELECT Nome, CPF, Count(*) FROM Usuario
-GROUP BY CPF
-HAVING Count(*) > 1;
-END |
+declare cpf_count varchar(11);
+SELECT  Count(*) into cpf_count FROM Usuario where cpf = cpf;
+if (cpf_count > 1) THEN
+	return true;
+else
+	return false;
+end if;
+END; |
 DELIMITER ;
 
 /***********************************************************/
 
-/*Função 4 - Mostra produtos fabricados a partir daquela data*/
+/*Função 4 - Mostra quantas garrafas de 1L uma producao cria*/
 DELIMITER |
-CREATE FUNCTION mostrarProdutosAposData(data_evento DATE)
-RETURNS TABLE(id int, Qtd decimal, d_inicio date, d_fim date)
-AS
-BEGIN
-SELECT 
-fk_Cerveja_Id,
-Quantidade,
-Dt_Inicio,
-Dt_Fim
-FROM Producao WHERE Dt_Fim >= data_evento;
-RETURN 
-END |
+create function fn_qtd_garrafas (qtd_l int, qtd_v decimal(10,0))
+returns decimal(10,0)
+begin
+	return qtd_l*1000/qtd_v;
+end; |
 DELIMITER ;
-    
-
-
-
-
-
-
