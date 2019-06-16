@@ -84,9 +84,10 @@ BEGIN
 END;
 -- CALL TopVendas('2019-10-06');
 
--- TODO
--- create PROCEDURE Balanco(in data_balanco date)
--- BEGIN
--- 	SELECT sum(Quantidade) from MovimentacaoEstoque where Data_Registro = data_balanco and Tipo = 'Entrada';
--- END;
--- CALL Balanco('2019-10-06');
+-- 
+DELIMITER $$
+create PROCEDURE Gastos(in data_balanco date)
+BEGIN
+	SELECT sum(Quantidade) from MovimentacaoEstoque where Data_Registro = data_balanco and Tipo = 'Entrada';
+END;
+-- CALL Gastos('2019-10-06');
