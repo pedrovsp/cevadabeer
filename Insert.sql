@@ -46,25 +46,29 @@ VALUES
 
 INSERT INTO CevadaBeer.MovimentacaoEstoque(Data_Registro, Tipo, Quantidade, fk_Produto_Id)
 VALUES
-('2019-10-06', "Entrada", 100, 1),
-('2019-11-06', "Entrada", 100, 1),
+('2019-10-06', "Saida", 100, 1),
+('2019-10-06', "Saida", 100, 1),
 ('2019-12-06', "Saída", 100, 2),
 ('2020-01-06', "Entrada", 100, 3),
-('2020-02-06', "Entrada", 100, 4);
-
+('2020-02-06', "Entrada", 100, 4),
+('2019-10-06', "Saida", 150, 2),
+('2019-10-06', "Saida", 100, 2),
+('2019-10-06', "Saida", 130, 3);
 
 INSERT INTO CevadaBeer.Producao(fk_Cerveja_Id, Quantidade, Dt_Inicio, Dt_Fim)
 VALUES
 (1, 15, '2019-05-01', '2019-07-01'),
 (2, 80, '2019-05-10', '2019-07-10'),
 (3, 100, '2019-05-10', '2019-07-15'),
+(3, 500, '2019-05-10', null),
+(3, 500, '2019-05-10', null),
 (4, 30, '2019-06-20', '2019-10-20');
 
 
 
 INSERT INTO CevadaBeer.Usuario(Nome, CPF, Senha, Email)
 VALUES
-("Felipe", "12355514703", "123456789", "felipys@gmail.com"),
+("Felipe", "12355514703", "2222", "felipys@gmail.com"),
 ("Pedro Vitorino", "66515933339", "123123", "pedrovitorino.sp@gmail.com"),
 ("Otavio Flauzino", "11552535409", "im123", "otavio@gmail.com");
 

@@ -14,10 +14,10 @@ select
     pr.Dt_Fim,
     pr.Quantidade as Qtd_Litros_Prod,
     sum(co.QtdPorLitro) Total_Qtd_Lts
-from cerveja c,
-	ingredientes i,
-	contem co,
-	producao pr
+from Cerveja c,
+	Ingredientes i,
+	Contem co,
+	Producao pr
 where c.Id in (1,2,3)
 	and c.Id = co.fk_Cerveja_Id
 	and i.Id = co.fk_Ingredientes_Id
@@ -41,11 +41,11 @@ select
     cj.Nome as Cervejaria,
     c.Nome as Cerveja,
     i.Nome as Ingredientes
-from cervejaria cj,
-	produto pr,
-	cerveja c,
-	contem co,
-	ingredientes i
+from Cervejaria cj,
+	Produto pr,
+	Cerveja c,
+	Contem co,
+	Ingredientes i
 where cj.Id = pr.fk_cervejaria_id
 	and pr.fk_cerveja_id = c.id
 	and c.Id = co.fk_Cerveja_Id
@@ -58,10 +58,10 @@ select
     cj.Nome as Cervejaria,
     c.Nome as Cerveja,
     sum(pr.Quantidade) as Qtd_Produto
-from cervejaria cj,
-	produto pr,
-	cerveja c,
-	producao pd
+from Cervejaria cj,
+	Produto pr,
+	Cerveja c,
+	Producao pd
 where cj.Id = pr.fk_cervejaria_id
 	and pr.fk_cerveja_id = c.id
 group by cj.Nome,
@@ -77,16 +77,16 @@ select
     u.Nome as Usuario,
     u.Email,
     qu.Qtd_Usuarios
-from cervejaria cj,
-	representa r,
-	usuario u,
+from Cervejaria cj,
+	Representa r,
+	Usuario u,
     (select
 		cj.Id,
 		cj.Nome as Cervejaria,
 		count(u.Id) Qtd_Usuarios
-	from cervejaria cj,
-		representa r,
-		usuario u
+	from Cervejaria cj,
+		Representa r,
+		Usuario u
 	where cj.Id = r.fk_Cervejaria_Id
 		and u.Id = r.fk_Usuario_Id
 	group by Id, Cervejaria) qu
