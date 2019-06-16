@@ -1,0 +1,13 @@
+Item 5 - Efetuar a carga de dados.
+Item 6 - Gerar 4 relatórios (usar junções, funções, cláusula group by)
+Item 7 - Criar 4 funções
+Item 8 - Criar 5 procedimentos distintos
+Item 9 - Criar 5 triggers distintos
+
+
+Ideias
+
+Trigger - Debitar ou creditar quatidade em estoque após um um evento (entrada ou saída)
+Função - Comparar qual a cerveja com maior valor
+Função - Comparar qual a cerveja tem mais produtos em estoque
+Função - Comparar 

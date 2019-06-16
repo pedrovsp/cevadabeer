@@ -17,7 +17,8 @@ CREATE TABLE Cerveja (
 CREATE TABLE Ingredientes (
     Id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
     Nome VARCHAR(255),
-    QuantidadeEstoque DECIMAL
+    QuantidadeEstoque DECIMAL,
+    ValorUnitario DECIMAL
 );
 
 CREATE TABLE Produto (
